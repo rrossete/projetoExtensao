@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="pt">
+
+<head th:substituteby="layout :: head">
+    <title>Área de Atuação</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<div th:include="layout :: sidebar" class="mui--no-user-select"></div>
+<header th:include="layout :: header" id="header"></header>
+
+<div id="content-wrapper">
+    <div class="mui--appbar-height"></div>
+    <div class="mui-container-fluid">
+        <h1>Área de Atuação</h1>
+
+
+        <form class="mui-form" th:object="${areaAtuacao}" th:action="@{/areaAtuacao/create}" th:method="POST">
+            <legend>Criar Tipo Serviço</legend>
+            <div class="mui-row">
+                <div class="mui-textfield mui-col-xs-12">
+                    <input th:field="${areaAtuacao.nome}" type="text" th:value="${areaAtuacao.nome}"/>
+                    <label>Nome</label>
+                </div>
+            </div>
+
+            <button type="submit" class="mui-btn mui-btn--raised mui-btn--primary">Criar</button>
+            <a class="mui-btn mui-btn--flat mui-btn--danger" th:href="@{/areaAtuacao/index}">Voltar</a>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

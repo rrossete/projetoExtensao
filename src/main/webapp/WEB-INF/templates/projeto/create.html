@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+
+        <div th:fragment="content" th:class="box">
+
+            <div class="box-header with-border">
+                <h3 class="box-title">Cadastro de Projetos</h3>
+
+            </div>
+            <form role="form" action="#" th:object="${projeto}" th:action="@{/projeto/create}" th:method="POST">
+                <div class="box-body">
+                    <div class="form-group col-xs-6" th:classappend="${#fields.hasErrors('nome')} ? has-error">
+                        <label>Título do Projeto</label>
+                        <input th:field="*{nome}" type="text" th:value="*{nome}" class="form-control"/>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" maxlength="50"></span>
+                    </div>
+                    <div class="form-group col-xs-3" th:classappend="${#fields.hasErrors('orgaoProjeto')} ? has-error">
+                        <label>Órgão de Fomento</label>
+                        <select class="form-control" th:field="${projeto.orgaoProjeto}" id="projeto-orgaoProjeto">
+                            <option value="">Selecione um Órgão de Fomento</option>
+                            <option th:each="orgao : ${orgaos}" th:value="${orgao.nome}"
+                                    th:text="${orgao.nome}"></option>
+                        </select>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('orgaoProjeto')}"
+                                       th:errors="*{orgaoProjeto}"></span>
+                    </div>
+                    <div class="form-group col-xs-3" th:classappend="${#fields.hasErrors('tipoProjeto')} ? has-error">
+                        <label>Classificação do Projeto</label>
+                        <input th:field="${projeto.tipoProjeto}" type="text" th:value="${projeto.tipoProjeto}" th:class="form-control" maxlength="20"/>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('tipoProjeto')}"
+                              th:errors="*{tipoProjeto}"></span>
+                    </div>
+                    <div class="form-group col-xs-3" th:classappend="${#fields.hasErrors('numBolsas')} ? has-error">
+                        <label>Número de Bolsas</label>
+                        <input th:field="${projeto.numBolsas}" type="number" th:value="${projeto.numBolsas}" th:class="form-control" max="999"/>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('numBolsas')}"
+                              th:errors="*{numBolsas}"></span>
+                    </div>
+                    <div class="form-group col-xs-3" th:classappend="${#fields.hasErrors('numVoluntarios')} ? has-error">
+                        <label>Número de Voluntários</label>
+                        <input th:field="${projeto.numVoluntarios}" type="number" th:value="${projeto.numVoluntarios}" th:class="form-control" max="999"/>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('numVoluntarios')}"
+                              th:errors="*{numVoluntarios}"></span>
+                    </div>
+                    <div class="form-group col-xs-3" th:classappend="${#fields.hasErrors('dtInicio')} ? has-error">
+                        <label>Data de Início</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <input th:field="*{dtInicio}" type="date" th:value="*{dtInicio}"
+                                   class="form-control"/>
+                            <span th:class="help-block" th:if="${#fields.hasErrors('dtInicio')}" th:errors="*{dtInicio}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3" th:classappend="${#fields.hasErrors('dtFim')} ? has-error">
+                        <label>Data de Término</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <input th:field="*{dtFim}" type="date" th:value="*{dtFim}"
+                                   class="form-control"/>
+                            <span th:class="help-block" th:if="${#fields.hasErrors('dtFim')}" th:errors="*{dtFim}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-6" th:classappend="${#fields.hasErrors('coordenadorProjeto')} ? has-error">
+                        <label>Coordenador do Projeto</label>
+                        <select multiple="multiple" class="form-control" th:field="${projeto.coordenadorProjeto}" id="projeto-coordenadorProjeto" required="">
+                            <option th:each="coordenadorProjeto : ${users}" th:value="${coordenadorProjeto.nome}"
+                                    th:text="${coordenadorProjeto.nome}"></option>
+                        </select>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('coordenadorProjeto')}"
+                              th:errors="*{coordenadorProjeto}"></span>
+                    </div>
+                    <div class="form-group col-xs-6" th:classappend="${#fields.hasErrors('resumo')} ? has-error">
+                        <label>Resumo do Projeto</label>
+                        <textarea rows="4" th:field="${projeto.resumo}" th:value="${projeto.resumo}" th:class="form-control" maxlength="250">
+                        </textarea>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('resumo')}"
+                              th:errors="*{resumo}"></span>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <br/>
+                    </div>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Criar</button>
+                        <a class="btn btn-default" th:href="@{/projeto/index}">Voltar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

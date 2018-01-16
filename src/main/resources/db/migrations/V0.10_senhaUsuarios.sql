@@ -1,0 +1,1 @@
+ALTER TABLE usuario ADD senha VARCHAR NOT NULL;

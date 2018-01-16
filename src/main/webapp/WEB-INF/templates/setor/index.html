@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="pt">
+
+<head th:substituteby="layout :: head">
+    <title>Setor</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<div th:include="layout :: sidebar" class="mui--no-user-select"></div>
+<header th:include="layout :: header" id="header"></header>
+<div id="content-wrapper">
+    <div class="mui--appbar-height"></div>
+    <div class="mui-container-fluid">
+        <h1>Setor</h1>
+
+        <table class="mui-table mui-table--bordered">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Setor</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="setor : ${setores}">
+                <td th:text="${setor.id}"></td>
+                <td th:text="${setor.setor}"></td>
+                <td>
+                    <div class="btn-group pull-right">
+                        <a class="mui-btn mui-btn--flat mui-btn--primary"
+                           th:href="@{/setor/update/{id}(id=${setor.id})}">Editar</a>
+                        <a class="delete mui-btn mui-btn--flat mui-btn--danger"
+                           th:href="@{/setor/delete/{id}(id=${setor.id})}">Excluir</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a class="mui-btn mui-btn--raised mui-btn--primary" th:href="@{/setor/create/}">Adicionar</a>
+
+    </div>
+</div>
+
+</body>
+</html>

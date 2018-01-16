@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Cadastro de Parametros</h3>
+
+    </div>
+    <form role="form" action="#" th:object="${parametro}" th:action="@{/parametrosDoSistema/create}" th:method="POST">
+        <div class="box-body">
+            <div class="form-group col-xs-12" th:classappend="${#fields.hasErrors('nome')} ? has-error">
+                <label>Nome</label>
+                <input th:field="*{nome}" type="text" th:value="*{nome}" class="form-control"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+            </div>
+
+            <div class="form-group col-xs-6">
+                <label>Numero Minimo de Horas</label>
+                <input th:field="${parametro.numero_minimo_horas}" type="number" th:value="${parametro.numero_minimo_horas}"
+                       th:class="form-control"/>
+            </div>
+            <div class="form-group col-md-6 col-sm-6">
+                <label>Numero Maximo Alunos</label>
+                <input th:field="${parametro.numero_maximo_alunos}" type="number" th:value="${parametro.numero_maximo_alunos}"
+                       th:class="form-control"/>
+            </div>
+
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Criar</button>
+            <a class="btn btn-default" th:href="@{/parametrosDoSistema/index}">Voltar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

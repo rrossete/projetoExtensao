@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div th:fragment="content" class="box box-primary">
+    <div class="box-header with-border">
+        <h3>Agendamento Usuário</h3>
+    </div>
+        <form role="form" action="#"  th:action="@{/agendamento-usuario/create}" th:method="POST">
+
+            <div class="box-body">
+                <label>Usuários</label>
+
+                <div class="row">
+
+
+                    <div  class="form-group col-md-6 col-sm-6">
+                        <select class="form-control" name="required" id="usuario-1-id" th:field="${agendamento.usuario1.id}">
+                            <option value="">Selecione o Aluno(a)</option>
+                            <option th:each="usuario:${usuarios}" th:value="usuario1.id"
+                                    th:text="usuario.nome"></option>
+                        </select>
+                    </div>
+
+                <div class="form-group col-md-6 col-sm-6">
+
+                    <select class="form-control" name="required" id="usuario-2-id" th:field="${agendamento.usuario2.id}">
+                        <option value="">Selecione o Aluno(a)</option>
+                        <option th:each="usuario:${usuarios}" th:value="usuario2.id"
+                                th:text="usuario.nome"></option>
+                    </select>
+                </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6 col-sm-6">
+
+                        <label>Demanda Jurídica</label>
+                        <select class="form-control" name="required" id="demanda-juridica_id" th:field="${agendamento.demandaJuridica.id}">
+                            <option value="">Selecione a Demanda Jurídica</option>
+                            <option th:each="demandaJuridica : ${demandaJuridicas}" th:value="${demandaJuridica.id}"
+                                    th:text="${demandaJuridica.demanda_juridica}"></option>
+                        </select>
+
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6"  th:classappend="${#fields.hasErrors('agendamento.disciplinaEmCurso')} ? has-error">
+                        <label>Disciplina em Curso</label>
+                        <input name="required" class="form-control" type="text" th:field="*{agendamento.disciplinaEmCurso}" th:value="*{agendamento.disciplinaEmCurso}"/>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('agendamento.disciplinaEmCurso')}"
+                              th:errors="*{agendamento.disciplinaEmCurso}"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label>Datas/Horários</label>
+                        <select class="form-control" name="required" id="controle-horario-id" th:field="${agendamento.controleHorarios.id}">
+
+                            <option th:each="controleHorario : ${controleHorarios}" th:value="${controleHorario.id}"
+                                    th:text="${controleHorario.preAtendimento.dataInicial}"></option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Salvar Agendamento</button>
+                <a class="btn btn-default" th:href="@{/agendamento-usuario/index}">Voltar</a>
+            </div>
+
+        </form>
+</div>
+
+</body>
+</html>

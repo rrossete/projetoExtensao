@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Gerenciamento de horários</h3>
+
+    </div>
+
+    <form enctype="multipart/form-data" th:object="${controleHorarios}" th:action="@{/controleHorario/update/{id}(id=${controleHorarios.id})}"
+          th:method="POST">
+
+        <div class="box-body">
+
+            <div class="form-group col-md-6">
+                <input readonly="true" type="text" th:value="${controleHorarios.cliente.nome}" th:field="${controleHorarios.cliente.nome}"  />
+
+            </div>
+
+            <input class="hidden" type="text" th:value="${controleHorarios.cliente.id}" th:field="${controleHorarios.cliente.id}"/>
+
+            <div class="form-group col-md-6">
+                <input readonly="true" type="text" th:value="${controleHorarios.preAtendimento.dataInicial}" th:field="${controleHorarios.preAtendimento.dataInicial}"  />
+
+            </div>
+
+            <div class="form-group col-md-6">
+                <input readonly="true" type="text" th:value="${controleHorarios.preAtendimento.dataFinal}" th:field="${controleHorarios.preAtendimento.dataFinal}"  />
+
+            </div>
+
+            <input class="hidden" type="text" th:value="${controleHorarios.cliente.id}" th:field="${controleHorarios.cliente.id}"/>
+
+            <div class="row">
+                <div class=" form-group col-md-12 col-sm-12" >
+                </div>
+
+            </div>
+
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a class="btn btn-default" th:href="@{/controleHorarios/index}">Voltar</a>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

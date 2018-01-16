@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Cadastro de Usuário</h3>
+
+    </div>
+    <form role="form" action="#" th:action="@{/usuario/create}" th:method="POST">
+        <div class="box-body">
+            <!--Begin fields Usuario-->
+            <div class="form-group col-md-8 col-sm-8" th:classappend="${#fields.hasErrors('usuario.nome')} ? has-error">
+                <label>Nome</label>
+                <input th:field="*{usuario.nome}" type="text" th:value="*{usuario.nome}" class="form-control"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('usuario.nome')}"
+                      th:errors="*{usuario.nome}"></span>
+            </div>
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('usuario.matricula_ufjf')} ? has-error">
+                <label>Matrícula</label>
+                <input th:field="*{usuario.matricula_ufjf}" type="text" th:value="*{usuario.matricula_ufjf}"
+                       class="form-control"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('usuario.matricula_ufjf')}"
+                      th:errors="*{usuario.matricula_ufjf}"></span>
+            </div>
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('usuario.email')} ? has-error">
+                <label>E-mail</label>
+                <input th:field="*{usuario.email}" type="text" th:value="*{usuario.email}" class="form-control"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('usuario.email')}"
+                      th:errors="*{usuario.email}"></span>
+            </div>
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('usuario.telefone')} ? has-error">
+                <label>Telefone</label>
+                <input th:field="*{usuario.telefone}" type="text" th:value="*{usuario.telefone}" class="form-control"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('usuario.telefone')}"
+                      th:errors="*{usuario.telefone}"></span>
+            </div>
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('usuario.celular')} ? has-error">
+                <label>Celular</label>
+                <input th:field="*{usuario.celular}" type="text" th:value="*{usuario.celular}" class="form-control"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('usuario.celular')}"
+                      th:errors="*{usuario.celular}"></span>
+            </div>
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('usuario.password')} ? has-error">
+                <label>Senha</label>
+                <input th:field="*{usuario.password}" type="password" th:value="*{usuario.password}"
+                       class="form-control"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('usuario.password')}"
+                      th:errors="*{usuario.password}"></span>
+            </div>
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('usuario.matchingPassword')} ? has-error">
+                <label>Confirmar Senha</label>
+                <input th:field="*{usuario.matchingPassword}" type="password" th:value="*{usuario.matchingPassword}"
+                       class="form-control"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('usuario.matchingPassword')}"
+                      th:errors="*{usuario.matchingPassword}"></span>
+            </div>
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('usuario.colaborador.oab')} ? has-error">
+                <label>OAB</label>
+                <input th:field="*{usuario.colaborador.oab}" type="text" th:value="*{usuario.colaborador.oab}"
+                       class="form-control"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('usuario.colaborador.oab')}"
+                      th:errors="*{usuario.colaborador.oab}"></span>
+            </div>
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('usuario.colaborador.carga_horaria')} ? has-error">
+                <label>Carga Horária</label>
+                <input th:field="*{usuario.colaborador.carga_horaria}" type="text"
+                       th:value="*{usuario.colaborador.carga_horaria}" class="form-control"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('usuario.colaborador.carga_horaria')}"
+                      th:errors="*{usuario.colaborador.carga_horaria}"></span>
+            </div>
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('usuario.colaborador.setor')} ? has-error">
+                <label>Setor</label>
+                <select class="form-control" th:field="${usuario.colaborador.setor}" id="usuario-setor">
+                    <option value="">Selecione um Setor</option>
+                    <option th:each="setor : ${setors}" th:value="${setor.id}"
+                            th:text="${setor.setor}"></option>
+                </select>
+                <span th:class="help-block" th:if="${#fields.hasErrors('usuario.colaborador.setor')}"
+                      th:errors="*{usuario.colaborador.setor}"></span>
+            </div>
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('usuario.colaborador.tipoColaborador')} ? has-error">
+                <label>Tipo de Colaborador</label>
+                <select class="form-control" th:field="${usuario.colaborador.tipoColaborador}"
+                        id="usuario-tipoColaborador">
+                    <option value="">Selecione um Tipo de Colaborador</option>
+                    <option th:each="tipoColaborador : ${tipoColaboradors}" th:value="${tipoColaborador.id}"
+                            th:text="${tipoColaborador.tipo}"></option>
+                </select>
+                <span th:class="help-block" th:if="${#fields.hasErrors('usuario.colaborador.tipoColaborador')}"
+                      th:errors="*{usuario.colaborador.tipoColaborador}"></span>
+            </div>
+
+            <!--Begin fields Endereco-->
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('usuario.endereco.cep')} ? has-error">
+                <label>CEP</label>
+                <input th:field="*{usuario.endereco.cep}" type="text" th:value="*{usuario.endereco.cep}"
+                       class="form-control"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('usuario.endereco.cep')}"
+                      th:errors="*{usuario.endereco.cep}"></span>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('usuario.endereco.logradouro')} ? has-error">
+                <label>Logradouro</label>
+                <input th:field="*{usuario.endereco.logradouro}" type="text" th:value="*{usuario.endereco.logradouro}"
+                       class="form-control"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('usuario.endereco.logradouro')}"
+                      th:errors="*{usuario.endereco.logradouro}"></span>
+            </div>
+            <div class="form-group col-md-3 col-sm-3"
+                 th:classappend="${#fields.hasErrors('usuario.endereco.numero')} ? has-error">
+                <label>Número</label>
+                <input th:field="*{usuario.endereco.numero}" type="text" th:value="*{usuario.endereco.numero}"
+                       class="form-control"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('usuario.endereco.numero')}"
+                      th:errors="*{usuario.endereco.numero}"></span>
+            </div>
+            <div class="form-group col-md-3 col-sm-3"
+                 th:classappend="${#fields.hasErrors('usuario.endereco.complemento')} ? has-error">
+                <label>Complemento</label>
+                <input th:field="*{usuario.endereco.complemento}" type="text" th:value="*{usuario.endereco.complemento}"
+                       class="form-control"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('usuario.endereco.complemento')}"
+                      th:errors="*{usuario.endereco.complemento}"></span>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('usuario.endereco.bairro')} ? has-error">
+                <label>Bairro</label>
+                <input th:field="*{usuario.endereco.bairro}" type="text" th:value="*{usuario.endereco.bairro}"
+                       class="form-control"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('usuario.endereco.bairro')}"
+                      th:errors="*{usuario.endereco.bairro}"></span>
+            </div>
+            <div class="form-group col-md-4 col-sm-4">
+                <label>Estado</label>
+                <select class="form-control" id="usuario-estado_id" th:field="*{usuario.endereco.cidade.estado.id}">
+                    <option value="">Selecione um Estado</option>
+                    <option th:each="estado : ${estados}" th:value="${estado.id}"
+                            th:text="${estado}"></option>
+                </select>
+            </div>
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('usuario.endereco.cidade')} ? has-error">
+                <label>Cidade</label>
+                <select class="form-control" th:field="${usuario.endereco.cidade.id}" id="usuario-cidade_id">
+                    <option value="">Informe o Estado primeiro</option>
+                </select>
+            </div>
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Criar</button>
+            <a class="btn btn-default" th:href="@{/usuario/index}">Voltar</a>
+        </div>
+    </form>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var urlToload = '/usuario/get-cidade/';
+
+            $('#usuario-estado_id').change(function () {
+                $.ajax({
+                    url: urlToload + $(this).children('option:selected').val(),
+                    method: 'GET',
+                    success: function (data) {
+                        $('#usuario-cidade_id').html(data);
+                    }
+                });
+            }).trigger('change');
+        });
+    </script>
+</div>
+</body>
+</html>

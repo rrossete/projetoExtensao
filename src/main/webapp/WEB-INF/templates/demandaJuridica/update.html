@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Cadastro de Demanda Jurídica</h3>
+    </div>
+
+    <form enctype="multipart/form-data" th:object="${demanda}" th:action="@{/demandaJuridica/update/{id}(id=${demanda.id})}"
+          th:method="POST">
+        <div class="col-sm-12 form-group col-xs-12">
+            <label>Demanda Jurídica</label>
+            <input th:field="*{demanda_juridica}" type="text" th:value="*{demanda_juridica}" class="form-control"/>
+
+        </div>
+
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a class="btn btn-default" th:href="@{/demandaJuridica/index}">Voltar</a>
+        </div>
+
+    </form>
+
+</div>
+</body>
+</html>

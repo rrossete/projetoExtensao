@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="pt">
+
+<head th:substituteby="layout :: head">
+    <title>Colaboradores</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<div th:include="layout :: sidebar" class="mui--no-user-select"></div>
+<header th:include="layout :: header" id="header"></header>
+
+<div id="content-wrapper">
+    <div class="mui--appbar-height"></div>
+    <div class="mui-container-fluid">
+        <h1>Colaboradores</h1>
+
+        <form class="mui-form" th:object="${tipoColaborador}" th:action="@{/tipoColaborador/create}" th:method="POST">
+            <legend>Criar Tipo Serviço</legend>
+            <div class="mui-row">
+                <div class="mui-textfield mui-col-xs-12">
+                    <input th:field="${tipoColaborador.tipo}" type="text" th:value="${tipoColaborador.tipo}"/>
+                    <label>Tipo</label>
+                </div>
+            </div>
+
+            <button type="submit" class="mui-btn mui-btn--raised mui-btn--primary">Criar</button>
+            <a class="mui-btn mui-btn--flat mui-btn--danger" th:href="@{/tipoColaborador/index}">Voltar</a>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

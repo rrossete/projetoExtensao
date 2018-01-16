@@ -1,0 +1,4 @@
+CREATE TABLE tipo_colaborador (
+  id SERIAL4 PRIMARY KEY,
+  tipo VARCHAR(200) NOT NULL
+);

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+
+<!-- Default box -->
+<div th:fragment="content" class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Cadastro de Pré-Atendimento</h3>
+
+        <div class="box-tools pull-right">
+
+            <a class="btn btn-success btn-sm" th:href="@{/preAtendimento/create/}"><i class="fa fa-plus"></i></a>
+
+        </div>
+    </div>
+    <div class="box-body no-padding">
+        <table class="table table-stripped table-responsive table-hover">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Data Inicial</th>
+                <th>Data Final</th>
+                <!--<th>Hora Incial</th>-->
+                <!--<th>Hora Final</th>-->
+                <th>Dia da Semana</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="atendimento,horario : ${preAtendimento}">
+                <td th:text="${atendimento.id}"></td>
+
+                <td th:text="${horario}"></td>
+                <td th:text="${atendimento}"></td>
+                <!--<td th:text="${atendimento.horaInicial}"></td>-->
+                <!--<td th:text="${atendimento.horaFinal}"></td>-->
+              <td th:text="${atendimento.diasSemana}"></td>
+                <td>
+                    <div class="btn-group pull-right">
+
+                        <a th:href="@{/preAtendimento/update/{id}(id=${atendimento.id})}" class="btn btn-primary btn-sm">
+                            <i class="fa fa-pencil margin-r-5"></i></a>
+
+
+                        <a class="btn btn-danger btn-sm" th:href="@{/cliente/delete/{id}(id=${atendimento.id})}">
+                            <i class="fa fa-trash-o margin-r-5"></i></a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="box-footer">
+    </div>
+    <!-- /.box-footer-->
+</div>
+
+</body>
+</html>

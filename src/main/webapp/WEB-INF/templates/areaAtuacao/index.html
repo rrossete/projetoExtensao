@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="pt">
+
+<head th:substituteby="layout :: head">
+    <title>Área de Atuação</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<div th:include="layout :: sidebar" class="mui--no-user-select"></div>
+<header th:include="layout :: header" id="header"></header>
+
+<div id="content-wrapper">
+    <div class="mui--appbar-height"></div>
+    <div class="mui-container-fluid">
+        <h1>Área de Atuação</h1>
+
+
+        <table class="mui-table mui-table--bordered">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="areaAtuacao : ${areasatuacao}">
+                <td th:text="${areaAtuacao.id}"></td>
+                <td th:text="${areaAtuacao.nome}"></td>
+                <td>
+                    <div class="btn-group pull-right">
+                        <a class="mui-btn mui-btn--flat mui-btn--primary"
+                           th:href="@{/areaAtuacao/update/{id}(id=${areaAtuacao.id})}">Editar</a>
+                        <a class="delete mui-btn mui-btn--flat mui-btn--danger"
+                           th:href="@{/areaAtuacao/delete/{id}(id=${areaAtuacao.id})}">Excluir</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a class="mui-btn mui-btn--raised mui-btn--primary" th:href="@{/areaAtuacao/create/}">Adicionar</a>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="content" th:class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Cadastro de Clientes</h3>
+            </div>
+            <form role="form" action="#" th:object="${cliente}" th:action="@{/cliente/create}" th:method="POST">
+                <div class="box-body">
+                    <div class="form-group col-xs-12" th:classappend="${#fields.hasErrors('nome')} ? has-error">
+                        <label>Nome</label>
+                        <input th:field="*{nome}" type="text" th:value="*{nome}" class="form-control" maxlength="50"/>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+                    </div>
+
+                    <!--Begin fields Endereco-->
+                    <div class="clearfix"></div>
+                    <div class="form-group col-md-4 col-sm-4"
+                         th:classappend="${#fields.hasErrors('endereco.logradouro')} ? has-error">
+                        <label>Logradouro</label>
+                        <input th:field="*{endereco.logradouro}" type="text" th:value="*{endereco.logradouro}"
+                               class="form-control" maxlength="100"/>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('endereco.logradouro')}"
+                              th:errors="*{endereco.logradouro}"></span>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-3"
+                         th:classappend="${#fields.hasErrors('endereco.numero')} ? has-error">
+                        <label>Número</label>
+                        <input th:field="*{endereco.numero}" type="number" th:value="*{endereco.numero}"
+                               class="form-control" max="99999"/>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('endereco.numero')}"
+                              th:errors="*{endereco.numero}"></span>
+                    </div>
+                    <div class="form-group col-md-2 col-sm-2"
+                         th:classappend="${#fields.hasErrors('endereco.complemento')} ? has-error">
+                        <label>Complemento</label>
+                        <input th:field="*{endereco.complemento}" type="text" th:value="*{endereco.complemento}"
+                               class="form-control" maxlength="50"/>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('endereco.complemento')}"
+                              th:errors="*{endereco.complemento}"></span>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-3"
+                         th:classappend="${#fields.hasErrors('endereco.bairro')} ? has-error">
+                        <label>Bairro</label>
+                        <input th:field="*{endereco.bairro}" type="text" th:value="*{endereco.bairro}"
+                               class="form-control" maxlength="50"/>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('endereco.bairro')}"
+                              th:errors="*{endereco.bairro}"></span>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-4"
+                         th:classappend="${#fields.hasErrors('endereco.cep')} ? has-error">
+                        <label>CEP</label>
+                        <input th:field="*{endereco.cep}" type="text" id="cep" th:value="*{endereco.cep}"
+                               class="form-control" maxlength="9"/>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('endereco.cep')}"
+                              th:errors="*{endereco.cep}"></span>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-4">
+                        <label>Estado</label>
+                        <select class="form-control" id="cliente-estado_id" th:field="*{endereco.cidade.estado.id}" required="">
+                            <option value="">Selecione um Estado</option>
+                            <option th:each="estado : ${estados}" th:value="${estado.id}"
+                                    th:text="${estado}"></option>
+                        </select>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('endereco.cidade.estado.id')}"
+                              th:errors="*{endereco.cidade.estado.id}"></span>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-4"
+                         th:classappend="${#fields.hasErrors('endereco.cidade')} ? has-error">
+                        <label>Cidade</label>
+                        <select class="form-control" th:field="*{endereco.cidade}" id="cliente-cidade_id" required="">
+                            <option value="">Informe o Estado primeiro</option>
+                        </select>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('endereco.cidade')}"
+                              th:errors="*{endereco.cidade}"></span>
+                    </div>
+
+                    <div class="form-group col-xs-4" th:classappend="${#fields.hasErrors('rg')} ? has-error">
+                        <label>RG</label>
+                        <input th:field="*{rg}" type="text" th:value="*{rg}" th:class="form-control" maxlength="13"/>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('rg')}" th:errors="*{rg}"></span>
+                    </div>
+                    <div class="form-group col-xs-4" th:classappend="${#fields.hasErrors('cpf')} ? has-error">
+                        <label>CPF</label>
+                        <input th:field="*{cpf}" type="tel" th:value="*{cpf}" th:class="form-control" maxlength="14"/>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></span>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label>Data de Nascimento</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <input th:field="*{nascimento}" type="date" th:value="*{nascimento}"
+                                   class="form-control"/>
+                            <span th:class="help-block" th:if="${#fields.hasErrors('nascimento')}" th:errors="*{nascimento}"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xs-6" th:classappend="${#fields.hasErrors('nomeMae')} ? has-error">
+                        <label>Nome Mãe</label>
+                        <input th:field="*{nomeMae}" type="text" th:value="*{nomeMae}" th:class="form-control"/>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('nomeMae')}" th:errors="*{nomeMae}" maxlength="50"></span>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>Nome Pai</label>
+                        <input th:field="${cliente.nomePai}" type="text" th:value="${cliente.nomePai}" th:class="form-control" maxlength="50"/>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label>Profissão</label>
+                        <input th:field="${cliente.profissao}" type="text" th:value="${cliente.profissao}"
+                               th:class="form-control" maxlength="20"/>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label>Estado Civil</label>
+                        <input th:field="${cliente.estadoCivil}" type="text" th:value="${cliente.estadoCivil}"
+                               th:class="form-control" maxlength="20"/>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label>Nacionalidade</label>
+                        <input th:field="${cliente.nacionalidade}" type="text" th:value="${cliente.nacionalidade}"
+                               th:class="form-control" maxlength="20"/>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label>Naturalidade</label>
+                        <input th:field="${cliente.naturalidade}" type="text" th:value="${cliente.naturalidade}"
+                               th:class="form-control" maxlength="20"/>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label for="telefone">Telefone Residencial</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                            <input th:field="${cliente.telResidencial}" type="tel" name="telefone" id="telefone" th:value="${cliente.telResidencial}"
+                                   th:class="form-control" max="9999999999"/>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3" th:classappend="${#fields.hasErrors('telCelular')} ? has-error">
+                        <label>Celular</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                            <input th:field="${cliente.telCelular}" type="tel" name="celular" id="celular" th:value="${cliente.telCelular}"
+                                   th:class="form-control" max="99999999999"/>
+                        </div>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('telCelular')}" th:errors="*{telCelular}"></span>
+                    </div>
+                    <div class="form-group col-xs-3" th:classappend="${#fields.hasErrors('email')} ? has-error">
+                        <label>Email</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                            <input th:field="${cliente.email}" type="email" th:value="${cliente.email}"
+                                   th:class="form-control"/>
+                        </div>
+                        <span th:class="help-block" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label>Outro Contato</label>
+                        <input th:field="${cliente.outroContato}" type="text" th:value="${cliente.outroContato}"
+                               th:class="form-control" maxlength="11"/>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Criar</button>
+                    <a class="btn btn-default" th:href="@{/cliente/index}">Voltar</a>
+                </div>
+            </form>
+            <script type="text/javascript">
+                $(document).ready(function(){
+
+                    var urlToload = '/usuario/get-cidade/';
+
+                    $('#cliente-estado_id').change(function () {
+                        $.ajax({
+                            url: urlToload + $(this).children('option:selected').val(),
+                            method: 'GET',
+                            success: function (data) {
+                                $('#cliente-cidade_id').html(data);
+                            }
+                        });
+                    }).trigger('change');
+
+                    $("#cep").inputmask("99999-999");
+                    $("#cpf").inputmask("999.999.999-99");
+                    $("#telefone").inputmask("(99)9999-9999");
+                    $("#celular").inputmask("(99)99999-9999");
+                });
+            </script>
+        </div>
+    </body>
+</html>

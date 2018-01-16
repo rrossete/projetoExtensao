@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content" class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Lista de Projetos</h3>
+        <div class="box-tools pull-right">
+        </div>
+    </div>
+    <div class="box-body no-padding">
+        <table class="table table-stripped table-responsive table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome do Projeto</th>
+                <th>Classificação do Projeto</th>
+                <th>Órgão de Fomento</th>
+                <th>Data de Inicio</th>
+                <th>Data de Encerramento</th>
+                <th>Número de Bolsas</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="projeto : ${projetos}">
+                <td th:text="${projeto.id}"></td>
+                <td th:text="${projeto.nome}"></td>
+                <td th:text="${projeto.tipoProjeto}"></td>
+                <td th:text="${projeto.orgaoProjeto}"></td>
+                <td th:text="${#dates.format(projeto.dtInicio, 'dd/MM/yyyy')}"></td>
+                <td th:text="${#dates.format(projeto.dtFim, 'dd/MM/yyyy')}"></td>
+                <td th:text="${projeto.numBolsas}"></td>
+                <td>
+                    <div class="btn-group pull-right">
+                        <a th:href="@{/projeto/update/{id}(id=${projeto.id})}" class="btn btn-primary btn-sm">
+                            <i class="fa fa-pencil margin-r-5"></i></a>
+                        <a class="btn btn-danger btn-sm" th:href="@{/projeto/delete/{id}(id=${projeto.id})}">
+                            <i class="fa fa-trash-o margin-r-5"></i></a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="box-footer">
+        <a class="btn btn-success btn-sm" th:href="@{/projeto/create/}"><i class="fa fa-plus"></i>&nbsp; Novo Projeto</a>
+    </div>
+
+</div>
+</body>
+</html>

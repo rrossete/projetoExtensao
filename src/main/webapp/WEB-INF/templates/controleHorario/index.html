@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-Br">
+<body>
+
+<!-- Default box -->
+<div th:fragment="content" class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Gerenciamento de horarios</h3>
+
+        <div class="box-tools pull-right">
+
+            <a class="btn btn-success btn-sm" th:href="@{/controleHorario/create/}"><i class="fa fa-plus"></i></a>
+        </div>
+    </div>
+    <div class="box-body no-padding">
+        <table class="table table-stripped table-responsive table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Data inicial</th>
+                <th>Data Final</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="controleHorarios : ${controleHorarios}">
+                <td th:text="${controleHorarios.id}"></td>
+                <td th:text="${controleHorarios.cliente.nome}"></td>
+                <td th:text="${controleHorarios.preAtendimento.dataInicial}"></td>
+                <td th:text="${controleHorarios.preAtendimento.dataFinal}"></td>
+                <td>
+                    <div class="btn-group pull-right">
+
+                        <a th:href="@{/controleHorarios/update/{id}(id=${controleHorarios.id})}" class="btn btn-primary btn-sm">
+                            <i class="fa fa-pencil margin-r-5"></i></a>
+
+                        <a class="btn btn-danger btn-sm" th:href="@{/controleHorarios/delete/{id}(id=${controleHorarios.id})}">
+                            <i class="fa fa-trash-o margin-r-5"></i></a>
+
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="box-footer">
+    </div>
+</div>
+</body>
+</html>

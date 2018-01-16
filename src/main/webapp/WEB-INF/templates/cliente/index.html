@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!-- Default box -->
+<div th:fragment="content" class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Lista de Clientes</h3>
+        <div class="box-tools pull-right">
+        </div>
+    </div>
+    <div class="box-body no-padding">
+        <table class="table table-stripped table-responsive table-hover">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Profissão</th>
+                <th>Telefone</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cliente : ${clientes}">
+                <td th:text="${cliente.id}"></td>
+                <td th:text="${cliente.nome}"></td>
+                <td th:text="${cliente.email}"></td>
+                <td th:text="${cliente.profissao}"></td>
+                <td th:text="${cliente.telCelular}"></td>
+                <td>
+                    <div class="btn-group pull-right">
+
+                        <a th:href="@{/cliente/update/{id}(id=${cliente.id})}" class="btn btn-primary btn-sm">
+                            <i class="fa fa-pencil margin-r-5"></i></a>
+
+
+                        <a class="btn btn-danger btn-sm" th:href="@{/cliente/delete/{id}(id=${cliente.id})}">
+                            <i class="fa fa-trash-o margin-r-5"></i></a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="box-footer">
+        <a class="btn btn-success btn-sm" th:href="@{/cliente/create/}"><i class="fa fa-user"></i>&nbsp; Novo Cliente</a>
+    </div>
+    <!-- /.box-footer-->
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Gerenciamento de horários</h3>
+    </div>
+    <form role="form" action="#"  th:action="@{/controleHorario/create}" th:method="POST" >
+        <div class="box-body">
+            <div class="form-group col-md-6 col-sm-6">
+                <label>Cliente</label>
+                <select class="form-control " name="cliente_id" id="cliente_id" th:field="${horario.cliente.id}">
+                    <option value="">Selecione o Cliente</option>
+                    <option th:each="cliente : ${clientes}" th:value="${cliente.id}"
+                            th:text="${cliente.nome}"></option>
+                </select>
+
+            </div>
+            <div class="form-group col-md-6 col-sm-6">
+                <label>Horário do Pré-Atendimento</label>
+
+                <select class="form-control" name="pre_atendimento_id" id="pre_atendimento_id" th:field="${horario.preAtendimento.id}">
+                    <option value="">Selecione o horário</option>
+                    <option th:each="preAtendimento : ${preAtendimento}" th:value="${preAtendimento.id}"
+                            th:text="${preAtendimento.dataInicial}">
+                    </option>
+                </select>
+
+            </div>
+        </div>
+
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Alocar cliente</button>
+            <a class="btn btn-default" th:href="@{/controleHorario/index}">Voltar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

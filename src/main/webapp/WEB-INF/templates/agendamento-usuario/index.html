@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+    <div th:fragment="content" class="box box-primary">
+        <div class="box-header with-border">
+
+            <div>
+                <ul  class="nav nav-pills">
+                    <li class="active">
+                        <a  href="#1a" data-toggle="tab">Agendados</a>
+                    </li>
+                    <li><a href="#2a" data-toggle="tab">Não Agendados</a>
+                    </li>
+
+                </ul>
+
+                <div class="tab-content clearfix">
+                    <div class="tab-pane active" id="1a">
+                        <div class="box-body no-padding">
+
+
+
+                           <table class="table table-stripped table-responsive table-hover" >
+                               <thead>
+                                    <tr>
+                                       <th>ID</th>
+                                       <th colspan="2">Data/Horário</th>
+                                       <th>Cliente</th>
+                                       <th>Demanda Jurídica</th>
+                                       <th>Contato</th>
+                                       <th>Disciplina em Curso</th>
+                                       <th colspan="2">Dupla</th>
+
+                                    </tr>
+                               </thead>
+                               <tbody>
+
+                                    <tr th:each="agendamento:${agendamento}" >
+                                        <td th:text="agendamento.id"></td>
+                                        <td th:text="agendamento.controleHorarios.preAtendimento.dataInicial"></td>
+
+                                        <td th:text="agendamento.controleHorarios.cliente.nome"></td>
+                                        <td th:text="agendamento.demandaJuridica.demanda_juridica"></td>
+                                        <td th:text="agendamento.controleHorarios.cliente.telResidencial"></td>
+                                        <td th:text="agendamento.disciplinaEmCurso"></td>
+                                        <td th:text="agendamento.usuario1.nome"></td>
+                                        <td th:text="agendamento.usuario2.nome"></td>
+
+                                        <td>
+                                            <div class="btn-group pull-right">
+
+                                                <a th:href="@{/agendamento-usuario/update/{id}(id=${agendamento.id})}" class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-pencil margin-r-5"></i></a>
+
+
+                                                <a class="btn btn-danger btn-sm" th:href="@{/agendamento-usuario/delete/{id}(id=${agendamento.id})}">
+                                                    <i class="fa fa-trash-o margin-r-5"></i></a>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                               </tbody>
+
+                           </table>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="2a">
+                        <div class="box-body no-padding">
+
+                            <div class="box-tools pull-right">
+
+                                <a class="btn btn-success btn-sm" th:href="@{/agendamento-usuario/create/}">Agendar</a>
+
+                            </div>
+
+                            <table class="table table-stripped table-responsive table-hover">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Data inicial</th>
+                                    <th>Data Final</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="controleHorarios : ${controleHorarios}">
+                                    <td th:text="${controleHorarios.id}"></td>
+                                    <td th:text="${controleHorarios.cliente.nome}"></td>
+                                    <td th:text="${controleHorarios.preAtendimento.dataInicial}"></td>
+                                    <td th:text="${controleHorarios.preAtendimento.dataFinal}"></td>
+                                    <td>
+                                        <div class="btn-group pull-right">
+
+                                            <!-- ##### esperando a geração das datas
+
+                                                <a th:href="@{/agendamento-usuario/create/{id}(id=${controleHorarios.id})}" class="btn btn-primary btn-sm">
+                                                <i class="fa fa-pencil margin-r-5"></i></a>
+                                             -->
+
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

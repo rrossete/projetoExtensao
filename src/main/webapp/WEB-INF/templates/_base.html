@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>AdminLTE 2 | Blank Page</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome.css}"/>
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/ionicons.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/AdminLTE.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/_all-skins.min.css}"/>
+
+
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.slimscroll.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.inputmask.js}"></script>
+    <script type="text/javascript" th:src="@{/js/fastclick.js}"></script>
+    <script type="text/javascript" th:src="@{/js/adminlte.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/demo.js}"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="jquery.autocomplete-address.min.js"></script>
+    <![endif]-->
+
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+    <!--API para busca por CEP-->
+    <!--<script type="text/javascript">
+        function atualizaCep(cep){
+            cep = cep.replace(/\D/g,"")
+            url="http://cep.correiocontrol.com.br/"+cep+".js"
+            s=document.createElement('script')
+            s.setAttribute('charset','utf-8')
+            s.src=url
+            document.querySelector('head').appendChild(s)
+        }
+        function correiocontrolcep(valor){
+            if (valor.erro) {
+                alert('Cep não encontrado');
+                return;
+            };
+            document.getElementById('logradouro').value=valor.logradouro
+            document.getElementById('bairro').value=valor.bairro
+            document.getElementById('localidade').value=valor.localidade
+            document.getElementById('uf').value=valor.uf
+        }
+    </script>-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <div th:raplace="fragments/header :: header">
+        Header
+    </div>
+</div>
+<div th:replace="${view} :: content">
+    Content
+</div>
+<div th:replace="fragments/footer :: footer">
+    Footer
+</div>
+</body>
+</html>

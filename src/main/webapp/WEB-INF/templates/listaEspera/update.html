@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Cadastro de Clientes na Lista de Espera</h3>
+
+    </div>
+
+    <form enctype="multipart/form-data" th:object="${listaEspera}" th:action="@{/listaEspera/update/{id}(id=${listaEspera.id})}"
+          th:method="POST">
+
+        <div class="box-body">
+
+            <div class="form-group col-md-6">
+                <input readonly="true" type="text" th:value="${listaEspera.cliente.nome}" th:field="${listaEspera.cliente.nome}"  />
+
+            </div>
+
+            <input class="hidden" type="text" th:value="${listaEspera.cliente.id}" th:field="${listaEspera.cliente.id}"/>
+
+            <div class="form-group col-md-6">
+                <input readonly="true" type="text" th:value="${listaEspera.demandaJuridica.demanda_juridica}" th:field="${listaEspera.demandaJuridica.demanda_juridica}"  />
+
+            </div>
+
+            <input class="hidden" type="text" th:value="${listaEspera.demandaJuridica.id}" th:field="${listaEspera.demandaJuridica.id}"/>
+
+            <div class="row">
+                <div class=" form-group col-md-12 col-sm-12" >
+                    <label>Observações</label>
+                    <input class="form-control" th:field="${listaEspera.observacoes}" type="text" th:value="${listaEspera.observacoes}"/>
+                    <!--<span th:class="help-block" th:if="${#fields.hasErrors('listaEsperas.observacoes')}"
+                          th:errors="*{listaEspera.observacoes}"></span>-->
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a class="btn btn-default" th:href="@{/listaEspera/index}">Voltar</a>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

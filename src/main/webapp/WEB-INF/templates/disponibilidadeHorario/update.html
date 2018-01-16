@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Cadastro de Disponibilidade de Horário</h3>
+
+    </div>
+    <form role="form" action="#" th:object="${disponibilidadeHorario}" th:action="@{/disponibilidadeHorario/update/{id}(id=${disponibilidadeHorario.id})}" th:method="POST" id="form_disponibilidade">
+        <div class="box-body">
+            <div id="aviso">
+
+            </div>
+                <input type="hidden" id="usuario" th:field="*{usuario.id}" th:value="*{usuario.id}" class="form-control"/>
+                <div class="form-group col-md-8 col-sm-8"  th:classappend="${#fields.hasErrors('usuario.id')} ? has-error">
+                    <label>Colaborador</label>
+                    <input class="form-control" id="nomecolaborador" th:field="*{usuario.nome}" th:value="*{usuario.nome}" required="true"/>
+                    <span th:class="help-block" th:if="${#fields.hasErrors('usuario.id')}"
+                          th:errors="*{usuario.id}"></span>
+                </div>
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('dia_semana')} ? has-error">
+                <label>Setor</label>
+                <select class="form-control" th:field="*{dia_semana}" required="true">
+                    <option value="">Selecione um Dia da Semana</option>
+                    <option th:each="dia:${T(ufjf.br.models.Semana).Semana()}" th:value="${dia}"
+                            th:text="${dia.getNome()}"></option>
+                </select>
+                <span th:class="help-block" th:if="${#fields.hasErrors('dia_semana')}"
+                      th:errors="*{dia_semana}"></span>
+            </div>
+            <div class="form-group col-md-2 col-sm-2"
+                 th:classappend="${#fields.hasErrors('horario_inicio')} ? has-error">
+                <label>Horário de Início</label>
+                <input th:field="*{horario_inicio}" type="time" th:value="*{horario_inicio}" class="form-control"  id="hora_ini" required="true"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('horario_inicio')}"
+                      th:errors="*{horario_inicio}"></span>
+            </div>
+            <div class="form-group col-md-2 col-sm-2"
+                 th:classappend="${#fields.hasErrors('horario_fim')} ? has-error">
+                <label>Horário de Término</label>
+                <input th:field="*{horario_fim}" type="time" th:value="*{horario_fim}" class="form-control" id="hora_fim" required="true"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('horario_fim')}"
+                      th:errors="*{horario_fim}"></span>
+            </div>
+            <div class="form-group col-md-2 col-sm-2">
+                <label>&nbsp;</label>
+                <button type="button" class="btn btn-success form-control" id="btn-carga">Calcular</button>
+            </div>
+            <div class="form-group col-md-2 col-sm-2">
+                <label>Carga Horária</label>
+                <input required="true" th:field="*{cargahoraria}" type="time" th:value="*{cargahoraria}" class="form-control" id="carga_horaria"/>
+            </div>
+
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary" >Salvar Alterações</button>
+            <a class="btn btn-default" th:href="@{/disponibilidadeHorario/index}">Voltar</a>
+        </div>
+    </form>
+    <script type="text/javascript" th:src="@{/js/jquery-ui/jquery-ui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/js/disponiblidadeHorario.js}" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/js/jquery-ui/jquery-ui.css}"/>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Cadastro da Lista de Espera</h3>
+
+    </div>
+    <form role="form" action="#"  th:action="@{/listaEspera/create}" th:method="POST">
+        <div class="box-body">
+            <div class="form-group col-md-6 col-sm-6">
+                <label>Cliente</label>
+                <select class="form-control " name="cliente_id" id="cliente_id" th:field="${listaEsperas.cliente.id}">
+                    <option value="">Selecione o Cliente</option>
+                    <option th:each="cliente : ${clientes}" th:value="${cliente.id}"
+                            th:text="${cliente.nome}"></option>
+                </select>
+
+            </div>
+            <div class="form-group col-md-6 col-sm-6">
+                <label>Demanda Jurídica</label>
+                <select class="form-control" name="demanda-juridica_id" id="demanda-juridica_id" th:field="${listaEsperas.demandaJuridica.id}">
+                    <option value="">Selecione a Demanda Jurídica</option>
+                    <option th:each="demandaJuridica : ${demandaJuridicas}" th:value="${demandaJuridica.id}"
+                            th:text="${demandaJuridica.demanda_juridica}"></option>
+                </select>
+
+            </div>
+            <div class="row">
+                <div class=" form-group col-md-12 col-sm-12" th:classappend="${#fields.hasErrors('listaEsperas.observacoes')} ? has-error">
+                    <label>Observações</label>
+                    <input class="form-control" th:field="*{listaEsperas.observacoes}" type="text" th:value="*{listaEsperas.observacoes}"/>
+                    <span th:class="help-block" th:if="${#fields.hasErrors('listaEsperas.observacoes')}"
+                          th:errors="*{listaEsperas.observacoes}"></span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Criar</button>
+            <a class="btn btn-default" th:href="@{/listaEspera/index}">Voltar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

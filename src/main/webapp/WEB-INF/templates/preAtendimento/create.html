@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Cadastro de Pré-Adentimento</h3>
+    </div>
+
+    <form role="form" action="#" th:object="${preAtendimento}" th:action="@{/preAtendimento/create}" th:method="POST">
+        <div class="box-body">
+
+
+            <div class="form-group col-xs-3">
+                <label>Data Inicial</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input th:field="*{dataInicial}" type="datetime-local" th:value="*{dataInicial}" class="form-control"/>
+                    <span th:class="help-block" th:if="${#fields.hasErrors('dataInicial')}"
+                          th:errors="*{dataInicial}"></span>
+                </div>
+            </div>
+
+            <!--<div class="form-group col-xs-3">-->
+                <!--<label>Hora Inicial</label>-->
+                <!--<div class="input-group">-->
+                    <!--<span class="input-group-addon"><i class="fa fa-calendar"></i></span>-->
+                    <!--<input th:field="*{horaInicial}" type="time" th:value="*{horaInicial}"-->
+                           <!--class="form-control pull-right"/>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="form-group col-xs-3">
+                <label>Data Final</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input th:field="*{dataFinal}" type="datetime-local" th:value="*{dataFinal}" class="form-control"/>
+                    <span th:class="help-block" th:if="${#fields.hasErrors('dataFinal')}"
+                          th:errors="*{dataFinal}"></span>
+                </div>
+            </div>
+
+
+            <!--<div class="form-group col-xs-3">-->
+                <!--<label>Hora Final</label>-->
+                <!--<div class="input-group">-->
+                    <!--<span class="input-group-addon"><i class="fa fa-calendar"></i></span>-->
+                    <!--<input th:field="*{horaFinal}" type="time" th:value="*{horaFinal}" class="form-control pull-right"/>-->
+                    <!--<span th:class="help-block" th:if="${#fields.hasErrors('horaFinal')}"-->
+                          <!--th:errors="*{horaFinal}"></span>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--data-date-format="DD/MM/YYYY HH:mm-->
+
+
+            <div class="form-group col-xs-3">
+                <label>Duração Atendimento</label>
+                <div class="input-group">
+                    <input th:field="*{duracaoAtendimento}" th:type="text" th:value="*{duracaoAtendimento}" th:class="form-control"/>
+                    <span th:class="help-block" th:if="${#fields.hasErrors('duracaoAtendimento')}"
+                          th:errors="*{duracaoAtendimento}"></span>
+                </div>
+            </div>
+
+            <div class="form-group col-xs-3">
+                <label>Semestre</label>
+                <div class="input-group">
+                    <input th:field="*{semestre}" type="text" th:value="*{semestre}" th:class="form-control"/>
+                    <span th:class="help-block" th:if="${#fields.hasErrors('semestre')}"
+                          th:errors="*{semestre}"></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Criar</button>
+            <a class="btn btn-default" th:href="@{/preAtendimento/index}">Voltar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

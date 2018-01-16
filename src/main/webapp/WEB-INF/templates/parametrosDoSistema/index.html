@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!-- Default box -->
+<div th:fragment="content" class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Lista de Parametros</h3>
+
+        <div class="box-tools pull-right">
+
+            <a class="btn btn-success btn-sm" th:href="@{/parametrosDoSistema/create/}"><i class="fa fa-plus"></i></a>
+
+        </div>
+    </div>
+    <div class="box-body no-padding">
+        <table class="table table-stripped table-responsive table-hover">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Numero Minimo De Horas</th>
+                <th>Numero Maximo De Alunos</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="parametro : ${parametros}">
+                <td th:text="${parametro.id}"></td>
+                <td th:text="${parametro.nome}"></td>
+                <td th:text="${parametro.numero_minimo_horas}"></td>
+                <td th:text="${parametro.numero_maximo_alunos}"></td>
+                <td>
+                    <div class="btn-group pull-right">
+
+                        <a th:href="@{/parametrosDoSistema/update/{id}(id=${parametro.id})}" class="btn btn-primary btn-sm">
+                            <i class="fa fa-pencil margin-r-5"></i></a>
+
+
+                        <a class="btn btn-danger btn-sm" th:href="@{/parametrosDoSistema/delete/{id}(id=${parametro.id})}">
+                            <i class="fa fa-trash-o margin-r-5"></i></a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="box-footer">
+    </div>
+    <!-- /.box-footer-->
+</div>
+</body>
+</html>
